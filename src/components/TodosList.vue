@@ -2,7 +2,7 @@
    <div>
     <h2>TODOS</h2>
     <div class="todos">
-      <div class="todo"></div>
+      <div v-for="todo in displayedTodos" :key="todo.id" class="todo">{{ todo.title }}</div>
     
     </div>
    </div>  
@@ -11,11 +11,13 @@
 
 <script>
 
-import {mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'TodosList',
+  
   computed: {
+    ...mapGetters(['displayedTodos'])
 },
   methods: {
     ...mapActions(['getTodos'])

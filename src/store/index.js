@@ -6,16 +6,20 @@ export default createStore({
     todos:[]
   },
   
-  getters: {},
-
-  mutations: {},
+  getters: {
+    displayedTodos: state => state.todos
+  },
 
   actions: {
-    async getTodos(){
+    async getTodos({commit}){
       const response = await axios.get('https://jsonplaceholder.typicode.com/todos')
       
-      console.log(response.data)
+      commit('setTodos', response.data)
     }
+  },
+  mutations: {
+    setTodos: (state, todos) => (state.todos = todos)
+
   }
 })
 
