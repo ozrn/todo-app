@@ -28,13 +28,21 @@ export default createStore({
         console.log(err)
       }
       
+    },
+
+    async removeTodo({commit}, id){
+      await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`) // this will remove from back-end
+
+      commit('deleteTodo', id)
     }
   },
 
   mutations: {
     setTodos: (state, todos) => (state.todos = todos),
 
-    createTodo: (state, todo) => (state.todos.unshift(todo))
+    createTodo: (state, todo) => (state.todos.unshift(todo)),
+
+    deleteTodo: (state, id) => state.todos = state.todos.filter(todo => todo.id !== id) // this will remove from UI
 
   }
 })

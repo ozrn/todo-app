@@ -2,8 +2,10 @@
    <div>
     <h2>TODOS</h2>
     <div class="todos">
-      <div v-for="todo in displayedTodos" :key="todo.id" class="todo">{{ todo.title }}</div>
-    
+      <div v-for="todo in displayedTodos" :key="todo.id" class="todo">
+        {{ todo.title }}
+        <i @click="removeTodo(todo.id)" class="fas fa-trash-alt"></i>
+      </div>
     </div>
    </div>  
    
@@ -20,7 +22,7 @@ export default {
     ...mapGetters(['displayedTodos'])
 },
   methods: {
-    ...mapActions(['getTodos'])
+    ...mapActions(['getTodos', 'removeTodo'])
   },
   created(){
     this.getTodos()
@@ -43,6 +45,14 @@ export default {
   border-radius: 5px;
   text-align: center;
   position: relative;
+  cursor: pointer;
+}
+
+i {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  color: aliceblue;
   cursor: pointer;
 }
 </style>
