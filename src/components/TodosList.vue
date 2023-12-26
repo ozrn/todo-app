@@ -1,6 +1,6 @@
 <template>
    <div>
-    <h2>TODOS</h2>
+    <h2>List of Todos</h2>
     <div class="todos">
       <div v-for="todo in displayedTodos" :key="todo.id" class="todo">
         {{ todo.title }}
@@ -54,6 +54,12 @@ i {
   right: 6px;
   color: aliceblue;
   cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .todos {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 

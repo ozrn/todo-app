@@ -34,6 +34,14 @@ export default createStore({
       await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`) // this will remove from back-end
 
       commit('deleteTodo', id)
+    },
+
+    async filterTodos({commit}, e){
+      const selectedNum = e.target.value
+
+      const response = await axios.get(`https://jsonplaceholder.typicode.com/todos?_limit=${selectedNum}`)
+
+      commit('setTodos', response.data)
     }
   },
 
